@@ -42,10 +42,15 @@ export default function RootLayout({
               <div>
                 <h4 className="font-semibold text-white mb-4">Quick Links</h4>
                 <ul className="space-y-2 text-sm">
-                  {/* make about us clickable */}
-                  <li>About Us</li>
-                  <li>Partner With Us</li>
-                  <li>Careers</li>
+                  <li>
+                    <a href="/about">About Us</a>
+                  </li>
+                  <li>
+                    <a href="/partner">Partner With Us</a>
+                  </li>
+                  <li>
+                    <a href="/careers">Careers</a>
+                  </li>
                 </ul>
               </div>
               <div>
