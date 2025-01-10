@@ -8,11 +8,10 @@ import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { useToast } from "@/components/ui/use-toast";
 
 export function SignUpForm() {
   const router = useRouter();
-  const { toast } = useToast();
+
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -30,26 +29,16 @@ export function SignUpForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (formData.password !== formData.confirmPassword) {
-      toast({
-        title: "Passwords don't match",
-        description: "Please make sure your passwords match",
-        variant: "destructive",
-      });
       return;
     }
 
     setIsLoading(true);
     // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     setIsLoading(false);
-    
-    toast({
-      title: "Account created!",
-      description: "Welcome to FoodHub",
-    });
-    
+
     router.push("/");
   };
 
@@ -67,7 +56,7 @@ export function SignUpForm() {
             Join FoodHub and start ordering delicious food
           </p>
         </div>
-        
+
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="name">Full Name</Label>
@@ -79,7 +68,7 @@ export function SignUpForm() {
               required
             />
           </div>
-          
+
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
             <Input
@@ -91,7 +80,7 @@ export function SignUpForm() {
               required
             />
           </div>
-          
+
           <div className="space-y-2">
             <Label htmlFor="password">Password</Label>
             <Input
@@ -104,7 +93,7 @@ export function SignUpForm() {
               minLength={8}
             />
           </div>
-          
+
           <div className="space-y-2">
             <Label htmlFor="confirmPassword">Confirm Password</Label>
             <Input
@@ -118,21 +107,14 @@ export function SignUpForm() {
             />
           </div>
 
-          <Button
-            type="submit"
-            className="w-full"
-            disabled={isLoading}
-          >
+          <Button type="submit" className="w-full" disabled={isLoading}>
             {isLoading ? "Creating account..." : "Sign Up"}
           </Button>
         </form>
 
         <p className="text-center text-sm text-muted-foreground mt-6">
           Already have an account?{" "}
-          <Link 
-            href="/auth/sign-in"
-            className="text-primary hover:underline"
-          >
+          <Link href="/auth/sign-in" className="text-primary hover:underline">
             Sign in
           </Link>
         </p>

@@ -8,25 +8,19 @@ import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { useToast } from "@/components/ui/use-toast";
 
 export function SignInForm() {
   const router = useRouter();
-  const { toast } = useToast();
+
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     setIsLoading(false);
-    
-    toast({
-      title: "Welcome back!",
-      description: "You've successfully signed in",
-    });
-    
+
     router.push("/");
   };
 
@@ -61,21 +55,14 @@ export function SignInForm() {
               required
             />
           </div>
-          <Button
-            type="submit"
-            className="w-full"
-            disabled={isLoading}
-          >
+          <Button type="submit" className="w-full" disabled={isLoading}>
             {isLoading ? "Signing in..." : "Sign In"}
           </Button>
         </form>
-        
+
         <p className="text-center text-sm text-muted-foreground mt-6">
           Don't have an account?{" "}
-          <Link 
-            href="/auth/sign-up"
-            className="text-primary hover:underline"
-          >
+          <Link href="/auth/sign-up" className="text-primary hover:underline">
             Sign up
           </Link>
         </p>
